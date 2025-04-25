@@ -2,16 +2,24 @@
   <link rel="stylesheet" href="style.css"/>
   <script src="jquery.min.js"></script>
   <script src="client.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <div>
-    <button id="pause">play/pause</button>
-    <button id="stop">stop</button>
-    <button id="prev">previous</button>
-    <button id="next">next</button>
-  </div>
-  <div>
-    <h3>Configured VLC instances</h3>
-    <ul id="clients"></ul>
+  <div class="container">
+    <h1>Multi-VLC Controller</h1>
+    
+    <div class="controls">
+      <button id="pause" class="control-btn">Play/Pause</button>
+      <button id="stop" class="control-btn">Stop</button>
+      <button id="prev" class="control-btn">Previous</button>
+      <button id="next" class="control-btn">Next</button>
+    </div>
+    
+    <div class="vlc-selection">
+      <h3>Select VLC Instances</h3>
+      <div id="vlcInstances" class="vlc-instances">
+        <!-- Checkboxes will be added here dynamically -->
+      </div>
+    </div>
   </div>
 </body>
