@@ -3,9 +3,19 @@
   var runCmd;
 
   runCmd = function(cmd) {
-    var req;
+    var instanceIds, req;
 
-    req = $.get('/player/' + cmd);
+    // Get all checked checkboxes and collect their values
+    instanceIds = $('input[name="vlcInstance"]:checked').map(function() {
+      return $(this).val();
+    }).get();
+
+    // If no instances are selected, send empty string to control all instances
+    if (instanceIds.length === 0) {
+      instanceIds = [""];
+    }
+
+    req = $.get('/player/' + cmd, { instanceId: instanceIds.join(',') });
     req.success(function() {
       return console.log(cmd + " was called");
     });
@@ -31,13 +41,19 @@
     });
     req = $.getJSON('/clients/*');
     return req.success(function(clients) {
-      var c, ul, _i, _len, _results;
+      var c, container, _i, _len, _results;
 
-      ul = $("#clients");
+      container = $("#vlcInstances");
       _results = [];
       for (_i = 0, _len = clients.length; _i < _len; _i++) {
         c = clients[_i];
-        _results.push(ul.append("<li>" + c.host + ":" + c.port + "</li>"));
+        var instanceId = c.host + ":" + c.port;
+        container.append(
+          "<div>" +
+          "<input type='checkbox' name='vlcInstance' value='" + instanceId + "' id='vlc_" + _i + "'>" +
+          "<label for='vlc_" + _i + "'>" + instanceId + "</label>" +
+          "</div>"
+        );
       }
       return _results;
     });
