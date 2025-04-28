@@ -51,7 +51,7 @@
         container.append(
           "<div>" +
           "<input type='checkbox' name='vlcInstance' value='" + instanceId + "' id='vlc_" + _i + "'>" +
-          "<label for='vlc_" + _i + "'>" + instanceId + "</label>" +
+          "<label for='vlc_" + _i + "'>" + (c.name || instanceId) + "</label>" +
           "</div>"
         );
       }
