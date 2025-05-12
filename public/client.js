@@ -75,9 +75,6 @@
         $("#pause").click(function () {
             runCmd('pause');
         });
-        $("#stop").click(function () {
-            runCmd('stop');
-        });
         $("#next").click(function () {
             runCmd('next');
         });
